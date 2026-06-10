@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -43,7 +44,7 @@ function getResponse(input: string): string {
 export default function AIAssistant() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "bot", text: "Hi! 👋 I'm Sujith's AI assistant. Ask me anything about him!" },
+    { role: "bot", text: "Hi! 👋 I&apos;m Sujith&apos;s AI assistant. Ask me anything about him!" },
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);

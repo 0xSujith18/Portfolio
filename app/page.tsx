@@ -1,7 +1,6 @@
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ParticleBackground from "@/app/components/ParticleBackground";
-import AIAssistant from "@/app/components/AIAssistant";
 import HeroSection from "@/app/sections/HeroSection";
 import AboutSection from "@/app/sections/AboutSection";
 import SkillsSection from "@/app/sections/SkillsSection";
@@ -27,7 +26,6 @@ export default function Home() {
         <Footer />
       </div>
 
-      <AIAssistant />
     </main>
   );
 }
