@@ -45,7 +45,10 @@
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: none;
   }
+
+  a, button, [role="button"] { cursor: none; }
 
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: transparent; }
