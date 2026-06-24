@@ -9,18 +9,18 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <span className="text-xl font-black tracking-tight text-[var(--text-primary)]">&lt;Sujith /&gt;</span>
+            <span className="text-xl font-black tracking-tight">&lt;Sujith /&gt;</span>
             <p className="text-sm text-[var(--text-secondary)] mt-1">
               Full Stack Developer · Problem Solver · Cloud Enthusiast
             </p>
           </div>
 
           <div className="flex items-center gap-1">
-            {NAV_LINKS.slice(0, 4).map((link) => (
+            {NAV_LINKS.slice(0, 4).map(link => (
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3 py-1.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors rounded-lg hover:bg-white/5"
+                className="px-3 py-1.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors rounded-lg hover:bg-[var(--glass-border)]"
               >
                 {link.label}
               </a>
@@ -38,16 +38,14 @@ export default function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg glass hover:scale-110 transition-all duration-200 hover:border-[var(--accent)]"
                 aria-label={label}
+                className="p-2 rounded-lg glass hover:scale-110 transition-all hover:border-[var(--indigo)]"
               >
                 <Icon className="w-4 h-4 text-[var(--text-secondary)]" />
               </a>
             ))}
           </div>
         </div>
-
-        <div className="mt-8 pt-6 border-t border-[var(--border)]" />
       </div>
     </footer>
   );
