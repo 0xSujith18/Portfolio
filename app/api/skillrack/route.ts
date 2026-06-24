@@ -12,14 +12,10 @@ export async function GET() {
 
     const html = await res.text();
 
-    // Score: green chart bar icon followed by number e.g. 18959
-    const scoreMatch = html.match(/icon chart bar[^>]*><\/i>(\d+)/);
-    // Programs solved: blue code icon
-    const solvedMatch = html.match(/icon code[^>]*><\/i>(\d+)/);
-    // Certificates: circular big label
-    const certMatch = html.match(/circular big label[^>]*>(\d+)<\/span>/);
-    // Badges (bronze ribbons): ion-ribbon-a color:brown
-    const badgeMatch = html.match(/color:brown;\"><\/i>(\d+)/);
+    const scoreMatch = html.match(/icon chart bar"><\/i>(\d+)/);
+    const solvedMatch = html.match(/circular blue inverted small icon code"><\/i>(\d+)/);
+    const certMatch = html.match(/circular big label">(\d+)<\/span>/);
+    const badgeMatch = html.match(/ion-ribbon-a" style="color:brown;"><\/i>(\d+)/);
 
     return NextResponse.json({
       score: scoreMatch ? parseInt(scoreMatch[1]) : null,

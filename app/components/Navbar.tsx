@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Moon, Sun, Menu, X, Download } from "lucide-react";
+import { Moon, Sun, Menu, X, Download, Eye } from "lucide-react";
 import { NAV_LINKS, PERSONAL } from "@/app/lib/data";
 import { cn } from "@/app/lib/utils";
 
@@ -75,10 +75,11 @@ export default function Navbar() {
           )}
           <a
             href={PERSONAL.resumeUrl}
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 btn-primary text-sm py-2"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Eye className="w-3.5 h-3.5" />
             Resume
           </a>
           <button
