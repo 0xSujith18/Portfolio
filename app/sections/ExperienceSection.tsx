@@ -45,8 +45,8 @@ export default function ExperienceSection() {
                 >
                   {/* Icon */}
                   <div className="flex-shrink-0 hidden md:flex">
-                    <div className="w-16 h-16 rounded-2xl glass-card flex items-center justify-center group-hover:border-brand-500/40 transition-all z-10">
-                      <Icon className="w-6 h-6 text-brand-400" />
+                    <div className="w-16 h-16 rounded-2xl glass-card flex items-center justify-center hover:border-[var(--accent)] transition-all z-10">
+                      <Icon className="w-6 h-6 text-[var(--text-primary)]" />
                     </div>
                   </div>
 
@@ -55,7 +55,7 @@ export default function ExperienceSection() {
                     <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                       <div>
                         <h3 className="font-bold text-lg">{exp.title}</h3>
-                        <p className="text-brand-400 font-medium text-sm">{exp.company}</p>
+                        <p className="text-[var(--text-secondary)] font-medium text-sm">{exp.company}</p>
                       </div>
                       <span className="tag text-xs">{exp.period}</span>
                     </div>
@@ -65,7 +65,7 @@ export default function ExperienceSection() {
                     <ul className="space-y-2 mb-4">
                       {exp.achievements.map((a, ai) => (
                         <li key={ai} className="flex items-start gap-2 text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-[var(--text-primary)] flex-shrink-0 mt-0.5" />
                           <span className="text-[var(--text-secondary)]">{a}</span>
                         </li>
                       ))}

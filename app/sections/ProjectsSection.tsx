@@ -64,7 +64,7 @@ export default function ProjectsSection() {
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                 filter === f
                   ? "btn-primary"
-                  : "glass text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-brand-500/30"
+                  : "glass text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]"
               }`}
             >
               {f}
@@ -95,7 +95,7 @@ export default function ProjectsSection() {
                 >
                   {/* Gradient overlay on hover */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-xl`}
+                    className="absolute inset-0 bg-[var(--accent-glow)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"
                   />
 
                   {project.featured && (
@@ -107,9 +107,9 @@ export default function ProjectsSection() {
                   )}
 
                   <div
-                    className={`w-10 h-10 rounded-xl bg-gradient-to-br ${project.color} flex items-center justify-center mb-4 opacity-90`}
+                    className="w-10 h-10 rounded-xl bg-[var(--glass-border)] flex items-center justify-center mb-4"
                   >
-                    <Icon className="w-5 h-5 text-white" />
+                    <Icon className="w-5 h-5 text-[var(--text-primary)]" />
                   </div>
 
                   <h3 className="font-bold text-lg mb-2 leading-snug">{project.title}</h3>
@@ -132,14 +132,23 @@ export default function ProjectsSection() {
                     {project.metrics.map((m) => (
                       <span
                         key={m}
-                        className="text-xs px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20"
+                        className="text-xs px-2 py-0.5 rounded-full glass border border-[var(--glass-border)] text-[var(--text-secondary)]"
                       >
                         {m}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex gap-2 mt-auto pt-2" />
+                  <div className="flex gap-2 mt-auto pt-2 relative z-10">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg btn-primary"
+                    >
+                      <Github className="w-3.5 h-3.5" /> View on GitHub
+                    </a>
+                  </div>
                 </motion.div>
               );
             })}

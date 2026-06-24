@@ -2,18 +2,23 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { User, Download, MapPin, Briefcase } from "lucide-react";
+import { User, Download, Eye, MapPin, Briefcase } from "lucide-react";
 import { PERSONAL, LEETCODE_STATS, SKILLRACK_STATS } from "@/app/lib/data";
 import { useEffect, useState } from "react";
 
 export default function AboutSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [totalSolved, setTotalSolved] = useState(LEETCODE_STATS.totalSolved);
+  const [srSolved, setSrSolved] = useState(SKILLRACK_STATS.problemsSolved);
 
   useEffect(() => {
     fetch("/api/leetcode")
       .then((r) => r.json())
       .then((d) => !d.error && setTotalSolved(d.totalSolved))
+      .catch(() => {});
+    fetch("/api/skillrack")
+      .then((r) => r.json())
+      .then((d) => !d.error && setSrSolved(d.problemsSolved))
       .catch(() => {});
   }, []);
 
@@ -42,7 +47,7 @@ export default function AboutSection() {
           >
             <div className="relative">
               <div className="w-48 h-48 rounded-3xl glass-card flex items-center justify-center overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-brand-500/30 to-accent-purple/30 flex items-center justify-center">
+                <div className="w-full h-full bg-[var(--bg-secondary)] flex items-center justify-center">
                   <span className="text-7xl">👨‍💻</span>
                 </div>
               </div>
@@ -61,19 +66,25 @@ export default function AboutSection() {
 
             <div className="flex flex-col gap-2 w-full">
               <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
-                <MapPin className="w-4 h-4 text-brand-400" />
+                <MapPin className="w-4 h-4 text-[var(--text-secondary)]" />
                 India
               </div>
               <div className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
-                <Briefcase className="w-4 h-4 text-brand-400" />
+                <Briefcase className="w-4 h-4 text-[var(--text-secondary)]" />
                 Open to Opportunities
               </div>
             </div>
 
-            <a href={PERSONAL.resumeUrl} download className="btn-primary w-full flex items-center justify-center gap-2">
-              <Download className="w-4 h-4" />
-              Download Resume
-            </a>
+            <div className="flex gap-2 w-full">
+              <a href={PERSONAL.resumeUrl} download className="btn-primary flex-1 flex items-center justify-center gap-2">
+                <Download className="w-4 h-4" />
+                Download
+              </a>
+              <a href={PERSONAL.resumeUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary flex-1 flex items-center justify-center gap-2">
+                <Eye className="w-4 h-4" />
+                View
+              </a>
+            </div>
           </motion.div>
 
           {/* Bio */}
@@ -93,8 +104,8 @@ export default function AboutSection() {
               <p className="text-[var(--text-secondary)] leading-relaxed text-sm">
                 My expertise includes developing responsive user interfaces, designing RESTful APIs,
                 managing databases, and deploying applications to cloud platforms. I have solved{" "}
-                <span className="text-brand-400 font-semibold">{totalSolved} LeetCode problems</span> and{" "}
-                <span className="text-brand-400 font-semibold">{SKILLRACK_STATS.problemsSolved}+ Skillrack problems</span>, strengthening
+                <span className="text-[var(--text-primary)] font-semibold underline underline-offset-2">{totalSolved} LeetCode problems</span> and{" "}
+                <span className="text-[var(--text-primary)] font-semibold underline underline-offset-2">{srSolved}+ Skillrack problems</span>, strengthening
                 my problem-solving and algorithmic thinking skills.
               </p>
             </div>

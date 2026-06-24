@@ -5,6 +5,14 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Send, Mail, Github, Linkedin, CheckCircle, AlertCircle } from "lucide-react";
 import { PERSONAL } from "@/app/lib/data";
+import emailjs from "@emailjs/browser";
+
+const SERVICE_ID = "service_siye5nk";
+const TEMPLATE_ID = "template_mbqbj19";
+const PUBLIC_KEY = "JuI_O1BST5b72N1MR";
+
+const inputClass =
+  "w-full bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm outline-none focus:border-[var(--accent)] transition-colors placeholder:text-[var(--text-secondary)]";
 
 export default function ContactSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -14,17 +22,26 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    // Simulate form submission — integrate with EmailJS or your API
-    await new Promise((r) => setTimeout(r, 1500));
-    setStatus("success");
-    setForm({ name: "", email: "", subject: "", message: "" });
-    setTimeout(() => setStatus("idle"), 4000);
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        { from_name: form.name, from_email: form.email, subject: form.subject, message: form.message },
+        PUBLIC_KEY
+      );
+      setStatus("success");
+      setForm({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setStatus("idle"), 4000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
 
   const socials = [
-    { label: "GitHub", href: PERSONAL.github, icon: Github, username: "@0xSujith18", color: "hover:border-gray-400/50" },
-    { label: "LinkedIn", href: PERSONAL.linkedin, icon: Linkedin, username: "m-s-sujith", color: "hover:border-blue-400/50" },
-    { label: "Email", href: `mailto:${PERSONAL.email}`, icon: Mail, username: PERSONAL.email, color: "hover:border-brand-500/50" },
+    { label: "GitHub", href: PERSONAL.github, icon: Github, username: "@0xSujith18" },
+    { label: "LinkedIn", href: PERSONAL.linkedin, icon: Linkedin, username: "m-s-sujith" },
+    { label: "Email", href: `mailto:${PERSONAL.email}`, icon: Mail, username: PERSONAL.email },
   ];
 
   return (
@@ -46,7 +63,7 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-5 gap-8">
-          {/* Left — Info */}
+          {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -61,16 +78,16 @@ export default function ContactSection() {
               </p>
             </div>
 
-            {socials.map(({ label, href, icon: Icon, username, color }) => (
+            {socials.map(({ label, href, icon: Icon, username }) => (
               <a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`glass-card p-4 flex items-center gap-3 transition-all ${color}`}
+                className="glass-card p-4 flex items-center gap-3 hover:border-[var(--accent)] transition-all"
               >
-                <div className="p-2 rounded-lg bg-brand-500/10">
-                  <Icon className="w-4 h-4 text-brand-400" />
+                <div className="p-2 rounded-lg bg-[var(--glass-border)]">
+                  <Icon className="w-4 h-4 text-[var(--text-primary)]" />
                 </div>
                 <div>
                   <p className="text-xs text-[var(--text-secondary)]">{label}</p>
@@ -79,16 +96,10 @@ export default function ContactSection() {
               </a>
             ))}
 
-            <div className="glass-card p-4">
-              <p className="text-xs text-[var(--text-secondary)] mb-1">Response time</p>
-              <p className="text-sm font-medium flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                Usually within 24 hours
-              </p>
-            </div>
+
           </motion.div>
 
-          {/* Right — Form */}
+          {/* Right */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -100,46 +111,35 @@ export default function ContactSection() {
                 <div>
                   <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Name</label>
                   <input
-                    type="text"
-                    required
-                    value={form.name}
+                    type="text" required value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Your name"
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm outline-none focus:border-brand-500/50 transition-colors placeholder:text-[var(--text-secondary)]"
+                    placeholder="Your name" className={inputClass}
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Email</label>
                   <input
-                    type="email"
-                    required
-                    value={form.email}
+                    type="email" required value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder="your@email.com"
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm outline-none focus:border-brand-500/50 transition-colors placeholder:text-[var(--text-secondary)]"
+                    placeholder="your@email.com" className={inputClass}
                   />
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Subject</label>
                 <input
-                  type="text"
-                  required
-                  value={form.subject}
+                  type="text" required value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  placeholder="Project inquiry, collaboration, etc."
-                  className="w-full bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm outline-none focus:border-brand-500/50 transition-colors placeholder:text-[var(--text-secondary)]"
+                  placeholder="Project inquiry, collaboration, etc." className={inputClass}
                 />
               </div>
               <div>
                 <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">Message</label>
                 <textarea
-                  required
-                  rows={5}
-                  value={form.message}
+                  required rows={5} value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Tell me about your project or idea..."
-                  className="w-full bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm outline-none focus:border-brand-500/50 transition-colors placeholder:text-[var(--text-secondary)] resize-none"
+                  className={`${inputClass} resize-none`}
                 />
               </div>
 
@@ -150,7 +150,7 @@ export default function ContactSection() {
                   className="flex items-center gap-2 text-sm text-green-400 bg-green-500/10 border border-green-500/20 rounded-xl px-4 py-3"
                 >
                   <CheckCircle className="w-4 h-4" />
-                  Message sent successfully! I&apos;ll get back to you soon.
+                  Message sent! I&apos;ll get back to you soon.
                 </motion.div>
               )}
 
@@ -170,7 +170,7 @@ export default function ContactSection() {
               >
                 {status === "sending" ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-[var(--bg-primary)]/30 border-t-[var(--bg-primary)] rounded-full animate-spin" />
                     Sending...
                   </>
                 ) : (

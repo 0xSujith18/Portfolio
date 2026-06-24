@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <span className="text-xl font-bold gradient-text">&lt;Sujith /&gt;</span>
+            <span className="text-xl font-black tracking-tight text-[var(--text-primary)]">&lt;Sujith /&gt;</span>
             <p className="text-sm text-[var(--text-secondary)] mt-1">
               Full Stack Developer · Problem Solver · Cloud Enthusiast
             </p>
@@ -38,7 +38,7 @@ export default function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg glass hover:scale-110 transition-all duration-200 hover:border-brand-500/40"
+                className="p-2 rounded-lg glass hover:scale-110 transition-all duration-200 hover:border-[var(--accent)]"
                 aria-label={label}
               >
                 <Icon className="w-4 h-4 text-[var(--text-secondary)]" />

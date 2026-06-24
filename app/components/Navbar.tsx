@@ -34,11 +34,11 @@ export default function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "glass py-3 shadow-lg shadow-black/5" : "py-5"
+        scrolled ? "glass py-3 shadow-lg shadow-black/5 dark:shadow-white/5" : "py-5"
       )}
     >
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-        <a href="#" className="font-bold text-xl gradient-text">
+        <a href="#" className="font-black text-xl tracking-tight text-[var(--text-primary)]">
           &lt;Sujith /&gt;
         </a>
 
@@ -50,8 +50,8 @@ export default function Navbar() {
               className={cn(
                 "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                 activeSection === link.href.slice(1)
-                  ? "text-brand-400 bg-brand-500/10"
-                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/5"
+                  ? "bg-[var(--accent)] text-[var(--bg-primary)]"
+                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--glass-border)]"
               )}
             >
               {link.label}
@@ -63,13 +63,13 @@ export default function Navbar() {
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-lg glass transition-all duration-200 hover:scale-110"
+              className="p-2 rounded-lg glass transition-all duration-200 hover:scale-110 hover:border-[var(--accent)]"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
-                <Sun className="w-4 h-4 text-yellow-400" />
+                <Sun className="w-4 h-4 text-[var(--text-primary)]" />
               ) : (
-                <Moon className="w-4 h-4 text-brand-500" />
+                <Moon className="w-4 h-4 text-[var(--text-primary)]" />
               )}
             </button>
           )}
@@ -97,7 +97,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="px-4 py-2.5 rounded-lg text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/5 transition-all"
+              className="px-4 py-2.5 rounded-lg text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--glass-border)] transition-all"
             >
               {link.label}
             </a>

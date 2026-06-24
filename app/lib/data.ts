@@ -11,7 +11,7 @@ export const PERSONAL = {
 
 export const STATS = [
   { label: "LeetCode Problems", value: "108", color: "from-orange-500 to-yellow-500" },
-  { label: "Skillrack Problems", value: "1100+", color: "from-brand-500 to-accent-purple" },
+  { label: "Skillrack Problems", value: "1103+", color: "from-brand-500 to-accent-purple" },
   { label: "Projects Built", value: "5+", color: "from-accent-cyan to-brand-500" },
   { label: "Technologies", value: "15+", color: "from-accent-pink to-accent-purple" },
 ];
@@ -89,7 +89,7 @@ export const PROJECTS = [
     tags: ["ReactJS", "TypeScript", "Node.js", "Express.js", "MongoDB Atlas", "Cloudinary"],
     color: "from-blue-500 to-cyan-500",
     icon: "MessageSquare",
-    github: "https://github.com/0xSujith18/Talkit",
+    github: "https://github.com/0xSujith18/Talkit.git",
     featured: true,
     metrics: ["Geo-tagged reports", "Authority dashboard", "Real-time feed"],
   },
@@ -103,7 +103,7 @@ export const PROJECTS = [
     tags: ["ReactJS", "TypeScript", "Node.js", "Express.js", "MongoDB", "JWT", "Tailwind CSS"],
     color: "from-green-500 to-teal-500",
     icon: "Leaf",
-    github: "https://github.com/0xSujith18/NutriVeda",
+    github: "https://github.com/0xSujith18/NutriVeda.git",
     featured: true,
     metrics: ["Dosha-based plans", "JWT auth", "Nutrition tracking"],
   },
@@ -117,7 +117,7 @@ export const PROJECTS = [
     tags: ["HTML", "CSS", "JavaScript"],
     color: "from-orange-500 to-yellow-500",
     icon: "CreditCard",
-    github: "https://github.com/0xSujith18/EDUPAY",
+    github: "https://github.com/0xSujith18/EDUPAY.git",
     featured: false,
     metrics: ["Fee tracking", "Payment history", "Receipt generation"],
   },
@@ -184,9 +184,10 @@ export const LEETCODE_STATS = {
 };
 
 export const SKILLRACK_STATS = {
-  problemsSolved: 1100,
-  badges: 8,
-  score: "Gold",
+  problemsSolved: 1103,
+  certificates: 13,
+  score: 18959,
+  profileUrl: "https://www.skillrack.com/faces/resume.xhtml?id=515094&key=d6faf944fbe8e7a872b440747ed217727519fb51",
 };
 
 export const CERTIFICATIONS = [

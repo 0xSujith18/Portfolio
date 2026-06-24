@@ -53,8 +53,8 @@ export default function SkillsSection() {
                 className="glass-card p-6"
               >
                 <div className="flex items-center gap-3 mb-5">
-                  <div className={`p-2 rounded-lg bg-gradient-to-br ${group.color} bg-opacity-20`}>
-                    <Icon className="w-5 h-5 text-white" />
+                  <div className="p-2 rounded-lg bg-[var(--glass-border)]">
+                    <Icon className="w-5 h-5 text-[var(--text-primary)]" />
                   </div>
                   <h3 className="font-semibold text-lg">{group.category}</h3>
                 </div>
@@ -92,7 +92,7 @@ export default function SkillsSection() {
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.5 + i * 0.04 }}
                 whileHover={{ scale: 1.08, y: -2 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl glass border border-[var(--border)] hover:border-brand-500/40 transition-all cursor-default"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl glass border border-[var(--glass-border)] hover:border-[var(--accent)] transition-all cursor-default"
               >
                 <span className="text-lg">{tech.icon}</span>
                 <span className="text-sm font-medium">{tech.name}</span>
